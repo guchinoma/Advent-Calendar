@@ -12,7 +12,7 @@
  ```python:fastgradientsign_advgen.py
 　adv_image = perturbation * grad_sign + image
  ```
-　imageは, ノイズを挿入する前の画像, perturbationとは, confファイルで個別に設定された係数である. grad_signとは, 損失関数を微分した式に, Adversarial Example用のCNNにimageを突っ込んで計算した値を代入した値である. 端的にいうと, このperturbation * grad_signがノイズの正体である. 一体なぜこれで誤検知してしまうのか.
+　imageは, ノイズを挿入する前の画像, perturbationとは, confファイルで個別に設定された係数である. grad_signとは, 損失関数を微分した式に, Adversarial Example用のCNNにimageを突っ込んで計算した値を代入した値である. 端的にいうと, このperturbation * grad_signがノイズの正体である. 一体なぜこれで誤認識してしまうのか.
 
 
 ###Fast Gradient Sign Methodとは
