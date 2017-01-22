@@ -68,41 +68,41 @@ int Calc_Levenshtein_Distance(char *first_arg, char *second_arg){
             //So troublesome if-statements so please fix it hahahaha
 
             // if all the same
-            if ((number_upper_right_diagonal == number_left) || (number_left == number_upper)){
+            if ((number_upper_right_diagonal == number_left) && (number_left == number_upper)){
                 array_lev[k][l] = number_upper_right_diagonal;
             }
 
             // if one is smaller than others that are the same 
-            if ((number_upper_right_diagonal == number_left) || (number_left > number_upper)){
+            if ((number_upper_right_diagonal == number_left) && (number_left > number_upper)){
                 array_lev[k][l] = number_upper_right_diagonal;
             }
-            if ((number_upper_right_diagonal == number_upper) || (number_upper > number_left)){
+            if ((number_upper_right_diagonal == number_upper) && (number_upper > number_left)){
                 array_lev[k][l] = number_upper_right_diagonal;
             }
-            if ((number_left == number_upper) || (number_upper > number_upper_right_diagonal)){
+            if ((number_left == number_upper) && (number_upper > number_upper_right_diagonal)){
                 array_lev[k][l] = number_left;
             }
-            if((number_upper_right_diagonal > number_left) || (number_left > number_upper)){
+            if((number_upper_right_diagonal > number_left) && (number_left > number_upper)){
                 array_lev[k][l] = number_upper_right_diagonal;
             }
 
             //if all is not same so boring
-            if((number_upper_right_diagonal > number_left) || (number_left > number_upper)){
+            if((number_upper_right_diagonal > number_left) && (number_left > number_upper)){
                 array_lev[k][l] = number_upper_right_diagonal;
             }
-            if((number_upper_right_diagonal > number_upper) || (number_upper > number_left)){
+            if((number_upper_right_diagonal > number_upper) && (number_upper > number_left)){
                 array_lev[k][l] = number_upper_right_diagonal;
             }
-            if((number_left > number_upper) || (number_upper > number_upper_right_diagonal)){
+            if((number_left > number_upper) && (number_upper > number_upper_right_diagonal)){
                 array_lev[k][l] = number_left;
             }
-            if((number_left > number_upper_right_diagonal) || (number_upper_right_diagonal > number_upper)){
+            if((number_left > number_upper_right_diagonal) && (number_upper_right_diagonal > number_upper)){
                 array_lev[k][l] = number_left;
             }
-            if((number_upper > number_upper_right_diagonal) || (number_upper_right_diagonal > number_left)){
+            if((number_upper > number_upper_right_diagonal) && (number_upper_right_diagonal > number_left)){
                 array_lev[k][l] = number_upper;
             }
-            if((number_upper > number_left) || (number_left > number_upper_right_diagonal)){
+            if((number_upper > number_left) && (number_left > number_upper_right_diagonal)){
                 array_lev[k][l] = number_upper;
             }
         }
