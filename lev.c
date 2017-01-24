@@ -15,9 +15,10 @@
 int Calc_Levenshtein_Distance(char *first_arg, char *second_arg){
 
     //numbers of indexes of array
+    //memo : strlenは最後の\0は含まない長さ
     int x_axis = strlen(first_arg);
     int y_axis = strlen(second_arg);
-    printf("%d, %d", x_axis, y_axis);
+    printf("%d, %d\n", x_axis, y_axis);
 
     //copying the letters
     //char array_letter_1[] = first_arg;
@@ -30,23 +31,26 @@ int Calc_Levenshtein_Distance(char *first_arg, char *second_arg){
     strcpy(array_letter_1, first_arg);
     strcpy(array_letter_2, second_arg);
     
-    printf("succeeded in generating arraies");
+    printf("succeeded in generating arraies\n");
     
     //Generating the 2-D array
     //int array_lev[x_axis][y_axis];
-    int **array_lev = (int **)malloc(x_axis);
+    int **array_lev = (int **)malloc( sizeof(int*) * (x_axis+1) );
     for(int i=0;i<x_axis;i++){
-      array_lev[i] = (int *)malloc(y_axis);
+      array_lev[i] = (int *)malloc( sizeof(int) * (y_axis+1) );
     }
-
     int i;
     for(i = 0; i < x_axis + 1; i++) {
-        array_lev[0][i] = i;
+        array_lev[i][0] = i;
+        int k;
+        scanf("%d",&k);
     }
+    exit(0);
     int j;
     for (j = 0; j < y_axis + 1; j++) {
-        array_lev[j][0] = j;
+        array_lev[0][j] = j;
     }
+
     
     //This is the main algorithm
     int k;
@@ -133,13 +137,12 @@ int Calc_Levenshtein_Distance(char *first_arg, char *second_arg){
 int main(){
 
     printf("Go");
-
     char *letter_1 = "sternritter";
     char *letter_2 = "askin_nakk_le_vaar";
 
-    printf("sternritter");
+    printf("sternritter\n");
 
-    printf("pass 1");
+    printf("pass 1\n");
 
     int answer = Calc_Levenshtein_Distance(letter_1, letter_2);
 
