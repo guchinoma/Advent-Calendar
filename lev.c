@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 // Function: Every word, except for, with, the, or like that must be a capital letter,
 // connected with "_" each other.
@@ -14,32 +15,42 @@
 int Calc_Levenshtein_Distance(char *first_arg, char *second_arg){
 
     //numbers of indexes of array
+    //memo : strlenは最後の\0は含まない長さ
     int x_axis = strlen(first_arg);
     int y_axis = strlen(second_arg);
-    printf("%d, %d", x_axis, y_axis);
+    printf("%d, %d\n", x_axis, y_axis);
 
     //copying the letters
     //char array_letter_1[] = first_arg;
     //char array_letter_2[] = second_arg;
 
-    char array_letter_1[x_axis];
-    char array_letter_2[y_axis];
+    // char array_letter_1[x_axis];
+    // char array_letter_2[y_axis];
+    char *array_letter_1 = (char *)malloc(sizeof(char) * x_axis);
+    char *array_letter_2 = (char *)malloc(sizeof(char) * y_axis);
     strcpy(array_letter_1, first_arg);
     strcpy(array_letter_2, second_arg);
     
-    printf("succeeded in generating arraies");
+    printf("succeeded in generating arraies\n");
     
     //Generating the 2-D array
-    int array_lev[x_axis][y_axis];
-
+    //int array_lev[x_axis][y_axis];
+    int **array_lev = (int **)malloc( sizeof(int*) * (x_axis+1) );
+    for(int i=0;i<x_axis;i++){
+      array_lev[i] = (int *)malloc( sizeof(int) * (y_axis+1) );
+    }
     int i;
     for(i = 0; i < x_axis + 1; i++) {
-        array_lev[0][i] = i;
+        array_lev[i][0] = i;
+        int k;
+        scanf("%d",&k);
     }
+    exit(0);
     int j;
     for (j = 0; j < y_axis + 1; j++) {
-        array_lev[j][0] = j;
+        array_lev[0][j] = j;
     }
+
     
     //This is the main algorithm
     int k;
@@ -107,6 +118,12 @@ int Calc_Levenshtein_Distance(char *first_arg, char *second_arg){
             }
         }
     }
+    free(array_letter_1);
+    free(array_letter_2);
+    for(int i=0;i<x_axis;i++){
+      free(array_lev[i]);
+    }
+    free(array_lev);
     if (array_lev[x_axis][y_axis] != 0){
         return array_lev[x_axis][y_axis];
     }
@@ -120,13 +137,12 @@ int Calc_Levenshtein_Distance(char *first_arg, char *second_arg){
 int main(){
 
     printf("Go");
-
     char *letter_1 = "sternritter";
     char *letter_2 = "askin_nakk_le_vaar";
 
-    printf("sternritter");
+    printf("sternritter\n");
 
-    printf("pass 1");
+    printf("pass 1\n");
 
     int answer = Calc_Levenshtein_Distance(letter_1, letter_2);
 
