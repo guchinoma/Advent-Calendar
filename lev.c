@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 // Function: Every word, except for, with, the, or like that must be a capital letter,
 // connected with "_" each other.
@@ -22,15 +23,21 @@ int Calc_Levenshtein_Distance(char *first_arg, char *second_arg){
     //char array_letter_1[] = first_arg;
     //char array_letter_2[] = second_arg;
 
-    char array_letter_1[x_axis];
-    char array_letter_2[y_axis];
+    // char array_letter_1[x_axis];
+    // char array_letter_2[y_axis];
+    char *array_letter_1 = (char *)malloc(sizeof(char) * x_axis);
+    char *array_letter_2 = (char *)malloc(sizeof(char) * y_axis);
     strcpy(array_letter_1, first_arg);
     strcpy(array_letter_2, second_arg);
     
     printf("succeeded in generating arraies");
     
     //Generating the 2-D array
-    int array_lev[x_axis][y_axis];
+    //int array_lev[x_axis][y_axis];
+    int **array_lev = (int **)malloc(x_axis);
+    for(int i=0;i<x_axis;i++){
+      array_lev[i] = (int *)malloc(y_axis);
+    }
 
     int i;
     for(i = 0; i < x_axis + 1; i++) {
@@ -107,6 +114,12 @@ int Calc_Levenshtein_Distance(char *first_arg, char *second_arg){
             }
         }
     }
+    free(array_letter_1);
+    free(array_letter_2);
+    for(int i=0;i<x_axis;i++){
+      free(array_lev[i]);
+    }
+    free(array_lev);
     if (array_lev[x_axis][y_axis] != 0){
         return array_lev[x_axis][y_axis];
     }
