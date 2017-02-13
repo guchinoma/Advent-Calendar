@@ -1,2 +1,2 @@
-# Other
-advent calendars or sth
+# Advent Calendar
+Mainly advent calendars
